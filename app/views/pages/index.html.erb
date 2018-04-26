@@ -1,10 +1,14 @@
 <h1>Testing graphs</h1>
+<% def getIssacID() 
+    return Character.select('id').where(:name => "Isaac Clarke")[0].id 
+  end %> 
 
 <div class="panel panel-default">
 	<div class="panel-heading">Visualization</div>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-8">graph</div>
+			<%= pie_chart Read.where(:character_id => getIssacID()).group(:aprnt_gender).count %>
 
 			<form>
 				<div class="col-md-4">
@@ -15,39 +19,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<input type="radio" name="univariate"> Univariate
-						</div>
-						<div class="col-md-6">
-							<input type="radio" name="univariate"> Bivariate
-						</div>
-					</div>
-					<!-- Placeholders below -->
-					<p>Note: If Bivariate is selected, show choices below</p>
-					<p>Can only select 1 from user and 1 from Character</p>
-					<strong>User Codes</strong></br>
-					<input type = "radio" name="user-code"> Gender</input><br>
-<!-- 					<ol>
-						<li>Very Masculine</li>
-						<li>Masculine</li>
-						<li>Neutral</li>
-						<li>Feminine</li>
-						<li>Very Feminine</li>
-						<li>Prefer not to state</li>
-					</ol> -->
-					<input type = "radio" name="user-code"> Race</input><br>
-<!-- 					<ol>
-						<li>Asian</li>
-						<li>Black</li>
-						<li>Latinx</li>
-						<li>Middle-Eastern</li>
-						<li>Mixed</li>
-						<li>White</li>
-						<li>Prefer not to state</li>
-					</ol> -->
-					<strong>Character Codes</strong>
+					<strong>Character Codes</strong><br>
 					<input type = "radio" name="character-code">Apparent Gender</input><br>
+					<input type = "radio" name="character-code">Apparent Race</input><br>
+					<input type = "radio" name="character-code">Apparent Species</input><br>
+					<br>
+					<strong>User Codes</strong></br>
+					<p> Gender</p>
 					<ol>
 						<input type = "checkbox">Very Masculine</input><br>
 						<input type = "checkbox">Masculine</input><br>
@@ -56,29 +34,17 @@
 						<input type = "checkbox">Very Feminine</input><br>
 						<input type = "checkbox">Prefer not to state</input><br>
 					</ol>
-					<input type = "radio" name="character-code">Apparent Race</input>
+					<p> Race</p>
 					<ol>
 						<input type = "checkbox">Asian</input><br>
 						<input type = "checkbox">Black</input><br>
-						<input type = "checkbox">Green</input><br>
 						<input type = "checkbox">Latinx</input><br>
 						<input type = "checkbox">Middle-Eastern</input><br>
 						<input type = "checkbox">Mixed</input><br>
 						<input type = "checkbox">White</input><br>
-						<input type = "checkbox">I don't know</input><br>
+						<input type = "checkbox">Prefer not to state</input><br>
+						<input type="submit">
 					</ol>
-					<input type = "radio" name="character-code">Apparent Species</input>
-					<ol>
-						<input type = "checkbox">Cyborg</input><br>
-						<input type = "checkbox">Elf</input><br>
-						<input type = "checkbox">Goblin</input><br>
-						<input type = "checkbox">Human</input><br>
-						<input type = "checkbox">Half-Genie</input><br>
-						<input type = "checkbox">Vampire</input><br>
-						<input type = "checkbox">I don't know</input><br>
-					</ol>
-
-					<input type="submit">
 				</div>
 			</form>
 		</div>

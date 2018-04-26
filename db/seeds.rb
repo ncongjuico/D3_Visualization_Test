@@ -1,12 +1,7 @@
 # If you need any help, contact Garry Chahal (gschahal@uci.edu)
 
 # ----------------------------------------------------------------------------------------------------------------
-<<<<<<< Updated upstream
-MAX_USERS =  50 # Max 88000
-MAX_CHARACTERS = 50 # Max 145?
-MAX_READ_PER_USER = 3 # No Max O(nk) n = num(Users), k = MAX_READ_PER_USER
-=======
-MAX_USERS =  15000 # Max 88000
+MAX_USERS =  15 # Max 88000
 MAX_CHARACTERS = 140 # Max 145?
 MAX_READ_PER_USER = 3 # No Max O(nk) n = num(Users), k = MAX_READ_PER_USER
 # This will generate 5 surveys per user in the database even if users in database > MAX_USERS
@@ -18,10 +13,9 @@ def cleanDB()
     Character.destroy_all
     Survey.destroy_all
 end
->>>>>>> Stashed changes
 
 # If your database is huge this may take a while
-#cleanDB() # Uncomment this line if you want to destroy the database and start from scratch
+cleanDB() # Uncomment this line if you want to destroy the database and start from scratch
 # ----------------------------------------------------------------------------------------------------------------
 
 # User genders
@@ -63,8 +57,6 @@ def generateEmail(name)
 	return name + "@" + name + ".com"
 end
 
-<<<<<<< Updated upstream
-=======
 def getUserType()
     return 1
 end
@@ -89,7 +81,6 @@ def getCharacterBio(name)
     return name + "Bio"
 end
 
->>>>>>> Stashed changes
 # Get a list of all active character IDs
 def getCharacterIDList()
 	characterIDs = []
@@ -107,11 +98,7 @@ def padCharacterName(name)
 	return name
 end
 
-<<<<<<< Updated upstream
-# Read names from file
-=======
 # Survey names from file
->>>>>>> Stashed changes
 def getUsernames(file)
     names = []
     File.open(file, "r") do |f|
@@ -122,11 +109,7 @@ def getUsernames(file)
     return names
 end
 
-<<<<<<< Updated upstream
-# Read characters from file
-=======
 # Survey characters from file
->>>>>>> Stashed changes
 def getCharacters(file)
 	characters = []
 	File.open(file, "r") do |f|
@@ -144,11 +127,7 @@ def generateUserSeedData(names)
 	users = []
 	(User.all.length..names.length).each do |i|
 		break if i >= MAX_USERS
-<<<<<<< Updated upstream
-    	users << {username: names[i], email: generateEmail(names[i]), race: randomUserRace(), gender: randomUserGender()}
-=======
     	users << {username: names[i], email: generateEmail(names[i]), race: randomUserRace(), gender: randomUserGender(), user_type: getUserType(), picture: getUserPicture(names[i]), password_digest: getUserPasswordDigest(names[i])}
->>>>>>> Stashed changes
 	end
 	User.create(users)
 end
@@ -158,26 +137,12 @@ def generateCharacterSeedData(characters)
 	characterDB = []
 	(Character.all.length..characters.length).each do |i|
 		break if i >= MAX_CHARACTERS
-<<<<<<< Updated upstream
-		characterDB << {name: characters[i][0], game_name: characters[i][1]}
-=======
-		characterDB << {name: characters[i][0], game_name: characters[i][1], character_desc: getCharacterDesc(characters[i][0]), picture_link: getCharacterPicture(characters[i][0]), character_bio_link: getCharacterBio(characters[i][0])}
->>>>>>> Stashed changes
+		characterDB << {character_name: characters[i][0], game_name: characters[i][1], character_desc: getCharacterDesc(characters[i][0]), picture_link: getCharacterPicture(characters[i][0]), character_bio_link: getCharacterBio(characters[i][0])}
 	end
 	Character.create(characterDB)
 end
 
-<<<<<<< Updated upstream
-# Generate Reads based on max reads per user
-def generateReadSeedData()
-	reads = []
-	characterIDList = getCharacterIDList()
-	User.all.each do |user|
-		while not Read.where(:user_id => user.id).length >= MAX_READ_PER_USER
-			Read.create(user_id: user.id, character_id: characterIDList[rand(characterIDList.length)], aprnt_race: randomCharacterRace(), aprnt_gender: randomCharacterGender(), aprnt_species: randomCharacterSpecies())
-		end
-	end
-=======
+
 # Generate Surveys based on max surveys per user
 def generateSurveySeedData()
 	surveys = []
@@ -190,7 +155,6 @@ def generateSurveySeedData()
 		end
 	end
     Survey.create(surveys)
->>>>>>> Stashed changes
 end
 
 # Seed User
@@ -207,32 +171,13 @@ def seedCharacter()
 	generateCharacterSeedData(characters)
 end
 
-<<<<<<< Updated upstream
-# Seed Read
-def seedRead()
-	puts "Generating Read Tables"
-	generateReadSeedData()
-end
-
-# Clear Database (just in case it is needed)
-def cleanDB()
-	puts "Cleaning Database"
-	User.destroy_all
-	Character.destroy_all
-	Read.destroy_all
-=======
 # Seed Survey
 def seedSurvey()
 	puts "Generating Survey Tables"
 	generateSurveySeedData()
->>>>>>> Stashed changes
 end
 
 # If your MAXes are huge this may take a while
 seedUser()
 seedCharacter()
-<<<<<<< Updated upstream
-seedRead()
-=======
 seedSurvey()
->>>>>>> Stashed changes
