@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426032450) do
+ActiveRecord::Schema.define(version: 20180426033049) do
 
   create_table "characters", force: :cascade do |t|
     t.string "character_name"
     t.string "game_name"
-    t.string "character_desc"
+    t.text "character_desc"
     t.string "picture_link"
     t.string "character_bio_link"
     t.datetime "created_at", null: false
