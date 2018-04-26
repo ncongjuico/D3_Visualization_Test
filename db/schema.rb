@@ -10,30 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412065906) do
+ActiveRecord::Schema.define(version: 20180426032450) do
 
   create_table "characters", force: :cascade do |t|
-    t.string "name"
+    t.string "character_name"
     t.string "game_name"
+    t.string "character_desc"
+    t.string "picture_link"
+    t.string "character_bio_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "reads", force: :cascade do |t|
+  create_table "surveys", force: :cascade do |t|
     t.integer "user_id"
     t.integer "character_id"
-    t.string "aprnt_race"
-    t.string "aprnt_gender"
-    t.string "aprnt_species"
+    t.string "race"
+    t.string "gender"
+    t.string "species"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "gender"
     t.string "race"
+    t.string "picture"
+    t.integer "user_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "password_digest"
   end
 
 end

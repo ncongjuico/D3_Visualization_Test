@@ -17,27 +17,27 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<input type="radio" id="univariate"> Univariate
+							<input type="radio" name="univariate"> Univariate
 						</div>
 						<div class="col-md-6">
-							<input type="radio" id="univariate"> Bivariate
+							<input type="radio" name="univariate"> Bivariate
 						</div>
 					</div>
 					<!-- Placeholders below -->
 					<p>Note: If Bivariate is selected, show choices below</p>
 					<p>Can only select 1 from user and 1 from Character</p>
 					<strong>User Codes</strong></br>
-					<p>Gender</p>
-					<ol>
+					<input type = "radio" name="user-code"> Gender</input><br>
+<!-- 					<ol>
 						<li>Very Masculine</li>
 						<li>Masculine</li>
 						<li>Neutral</li>
 						<li>Feminine</li>
 						<li>Very Feminine</li>
 						<li>Prefer not to state</li>
-					</ol>
-					<p>Race</p>
-					<ol>
+					</ol> -->
+					<input type = "radio" name="user-code"> Race</input><br>
+<!-- 					<ol>
 						<li>Asian</li>
 						<li>Black</li>
 						<li>Latinx</li>
@@ -45,38 +45,40 @@
 						<li>Mixed</li>
 						<li>White</li>
 						<li>Prefer not to state</li>
-					</ol>
+					</ol> -->
 					<strong>Character Codes</strong>
-					<p>Apparent Gender</p>
+					<input type = "radio" name="character-code">Apparent Gender</input><br>
 					<ol>
-						<li>Very Masculine</li>
-						<li>Masculine</li>
-						<li>Neutral</li>
-						<li>Feminine</li>
-						<li>Very Feminine</li>
-						<li>Prefer not to state</li>
+						<input type = "checkbox">Very Masculine</input><br>
+						<input type = "checkbox">Masculine</input><br>
+						<input type = "checkbox">Neutral</input><br>
+						<input type = "checkbox">Feminine</input><br>
+						<input type = "checkbox">Very Feminine</input><br>
+						<input type = "checkbox">Prefer not to state</input><br>
 					</ol>
-					<p>Apparent Race</p>
+					<input type = "radio" name="character-code">Apparent Race</input>
 					<ol>
-						<li>Asian</li>
-						<li>Black</li>
-						<li>Green</li>
-						<li>Latinx</li>
-						<li>Middle-Eastern</li>
-						<li>Mixed</li>
-						<li>White</li>
-						<li>I don't know</li>
+						<input type = "checkbox">Asian</input><br>
+						<input type = "checkbox">Black</input><br>
+						<input type = "checkbox">Green</input><br>
+						<input type = "checkbox">Latinx</input><br>
+						<input type = "checkbox">Middle-Eastern</input><br>
+						<input type = "checkbox">Mixed</input><br>
+						<input type = "checkbox">White</input><br>
+						<input type = "checkbox">I don't know</input><br>
 					</ol>
-					<p>Apparent Species</p>
+					<input type = "radio" name="character-code">Apparent Species</input>
 					<ol>
-						<li>Cyborg</li>
-						<li>Elf</li>
-						<li>Goblin</li>
-						<li>Human</li>
-						<li>Half-Genie</li>
-						<li>Vampire</li>
-						<li>I don't know</li>
+						<input type = "checkbox">Cyborg</input><br>
+						<input type = "checkbox">Elf</input><br>
+						<input type = "checkbox">Goblin</input><br>
+						<input type = "checkbox">Human</input><br>
+						<input type = "checkbox">Half-Genie</input><br>
+						<input type = "checkbox">Vampire</input><br>
+						<input type = "checkbox">I don't know</input><br>
 					</ol>
+
+					<input type="submit">
 				</div>
 			</form>
 		</div>

@@ -1,0 +1,19 @@
+<h1>My Graphs</h1>
+
+<h3>Search for Characters</h3>
+
+<div id="character-lookup">
+	<%= form_tag search_characters_path remote: true, method: :get, id: "character-lookup-form" do %>
+		<div class="form-group row no-padding text-center col-md-12">
+			<div class="col-md-10">
+				<%= text_field_tag :character, paramas[:character], placeholder: "Search character", autofocus: true,
+					class: "form-control search-box input-lg" %>
+			</div>
+			<div class="col-md-2">
+				<%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
+					<i class="fa fa-search"></i> Search
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>

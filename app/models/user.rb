@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-	has_many	:reads
+	has_many	:surveys
 	validates	:username, presence: true,
 				uniqueness: { case_sensitive: false },
 				length: { minimum: 3, maximum: 105 }
