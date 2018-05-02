@@ -1,9 +1,9 @@
 # If you need any help, contact Garry Chahal (gschahal@uci.edu)
 
 # ----------------------------------------------------------------------------------------------------------------
-MAX_USERS =  15 # Max 88000
+MAX_USERS =  15000 # Max 88000
 MAX_CHARACTERS = 140 # Max 145?
-MAX_READ_PER_USER = 3 # No Max O(nk) n = num(Users), k = MAX_READ_PER_USER
+MAX_READ_PER_USER = 30 # No Max O(nk) n = num(Users), k = MAX_READ_PER_USER
 # This will generate 5 surveys per user in the database even if users in database > MAX_USERS
 
 # Clear Database (just in case it is needed)
@@ -15,7 +15,7 @@ def cleanDB()
 end
 
 # If your database is huge this may take a while
-cleanDB() # Uncomment this line if you want to destroy the database and start from scratch
+#cleanDB() # Uncomment this line if you want to destroy the database and start from scratch
 # ----------------------------------------------------------------------------------------------------------------
 
 # User genders

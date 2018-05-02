@@ -1,6 +1,6 @@
 <h1>Testing graphs</h1>
 <% def getIssacID() 
-    return Character.select('id').where(:name => "Isaac Clarke")[0].id 
+    return Character.select('id').where(:character_name => "Isaac Clarke")[0].id 
   end %> 
 
 <div class="panel panel-default">
@@ -8,16 +8,21 @@
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-8">graph</div>
-			<%= pie_chart Read.where(:character_id => getIssacID()).group(:aprnt_gender).count %>
+			<%= pie_chart Survey.where(:character_id => getIssacID() ).group(:gender).count %>
 
 			<form>
 				<div class="col-md-4">
 					<div class="row">
 						<div class="col-md-12">
+<<<<<<< Updated upstream
 							<div class="form-group">
 								<%= select_tag 'Characters', options_from_collection_for_select(@characters, 'id', 'character_name') %>
 							</div>
 						</div>
+=======
+<!-- 							<%= select_tag 'Characters', options_from_collection_for_select(@characters, 'id', 'character_name') %>
+ -->						</div>
+>>>>>>> Stashed changes
 					</div>
 					<strong>Character Codes</strong><br>
 					<input type = "radio" name="character-code">Apparent Gender</input><br>
@@ -43,9 +48,9 @@
 						<input type = "checkbox">Mixed</input><br>
 						<input type = "checkbox">White</input><br>
 						<input type = "checkbox">Prefer not to state</input><br>
-						<input type="submit">
 					</ol>
 				</div>
+				<input type="submit">
 			</form>
 		</div>
 	</div>
