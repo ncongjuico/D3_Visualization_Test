@@ -1,9 +1,9 @@
 # If you need any help, contact Garry Chahal (gschahal@uci.edu)
 
 # ----------------------------------------------------------------------------------------------------------------
-MAX_USERS =  15000 # Max 88000
+MAX_USERS =  10000 # Max 88000
 MAX_CHARACTERS = 140 # Max 145?
-MAX_READ_PER_USER = 30 # No Max O(nk) n = num(Users), k = MAX_READ_PER_USER
+MAX_READ_PER_USER = 3 # No Max O(nk) n = num(Users), k = MAX_READ_PER_USER
 # This will generate 5 surveys per user in the database even if users in database > MAX_USERS
 
 # Clear Database (just in case it is needed)
@@ -147,11 +147,15 @@ end
 def generateSurveySeedData()
 	surveys = []
 	characterIDList = getCharacterIDList()
+
 	User.all.each do |user|
         counter = 0
 		while not Survey.where(:user_id => user.id).length + counter >= MAX_READ_PER_USER
 			surveys << {user_id: user.id, character_id: characterIDList[rand(characterIDList.length)], race: randomCharacterRace(), gender: randomCharacterGender(), species: randomCharacterSpecies()}
             counter += 1
+		end
+		if surveys.length >= MAX_READ_PER_USER*MAX_USERS
+			break
 		end
 	end
     Survey.create(surveys)

@@ -1,56 +1,51 @@
 <h1>Testing graphs</h1>
-<% def getIssacID() 
-    return Character.select('id').where(:character_name => "Isaac Clarke")[0].id 
-  end %> 
-
 <div class="panel panel-default">
 	<div class="panel-heading">Visualization</div>
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-md-8">graph</div>
-			<%= pie_chart Survey.where(:character_id => getIssacID() ).group(:gender).count %>
+			<%= pie_chart Survey.joins("LEFT OUTER JOIN users ON surveys.user_id = users.id").where(users: {gender: params[:gender_ids], race: params[:race_ids]}).where(:character  => params[:Characters]).group(params[:character]).count %>
 
 			<form>
 				<div class="col-md-4">
 					<div class="row">
 						<div class="col-md-12">
-<<<<<<< Updated upstream
 							<div class="form-group">
 								<%= select_tag 'Characters', options_from_collection_for_select(@characters, 'id', 'character_name') %>
 							</div>
 						</div>
-=======
-<!-- 							<%= select_tag 'Characters', options_from_collection_for_select(@characters, 'id', 'character_name') %>
- -->						</div>
->>>>>>> Stashed changes
 					</div>
 					<strong>Character Codes</strong><br>
-					<input type = "radio" name="character-code">Apparent Gender</input><br>
-					<input type = "radio" name="character-code">Apparent Race</input><br>
-					<input type = "radio" name="character-code">Apparent Species</input><br>
+					<%= radio_button_tag(:character, "gender") %>
+					<%= label_tag(:character_gender, "Gender") %>
+					<br />
+					<%= radio_button_tag(:character, "race") %>
+					<%= label_tag(:character_race, "Race") %>
+					<br />
+					<%= radio_button_tag(:character, "species") %>
+					<%= label_tag(:character_species, "Species") %>
 					<br>
 					<strong>User Codes</strong></br>
 					<p> Gender</p>
 					<ol>
-						<input type = "checkbox">Very Masculine</input><br>
-						<input type = "checkbox">Masculine</input><br>
-						<input type = "checkbox">Neutral</input><br>
-						<input type = "checkbox">Feminine</input><br>
-						<input type = "checkbox">Very Feminine</input><br>
-						<input type = "checkbox">Prefer not to state</input><br>
+						<% @genders.each do |gender| %>
+						<li>
+							<%= check_box_tag 'gender_ids[]', gender -%>
+							<%= h gender -%>
+						</li>
+						<% end %>
 					</ol>
 					<p> Race</p>
 					<ol>
-						<input type = "checkbox">Asian</input><br>
-						<input type = "checkbox">Black</input><br>
-						<input type = "checkbox">Latinx</input><br>
-						<input type = "checkbox">Middle-Eastern</input><br>
-						<input type = "checkbox">Mixed</input><br>
-						<input type = "checkbox">White</input><br>
-						<input type = "checkbox">Prefer not to state</input><br>
+						<% @races.each do |race| %>
+						<li>
+							<%= check_box_tag 'race_ids[]', race -%>
+							<%= h race -%>
+						</li>
+						<% end %>
 					</ol>
 				</div>
-				<input type="submit">
+				<input type="submit" onclick="updateGraph()">
 			</form>
 		</div>
 	</div>
